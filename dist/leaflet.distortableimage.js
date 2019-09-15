@@ -2384,6 +2384,7 @@ L.DistortableImage.Edit = L.Handler.extend({
       var opts = layer.options;
 
       layer.setOpacity(1);
+      L.DomUtil.addClass(layer._icon, 'leaflet-interactive');
       if (drag) { drag.enable(); }
       if (opts.draggable) { opts.draggable = true; }
     });
@@ -2400,7 +2401,10 @@ L.DistortableImage.Edit = L.Handler.extend({
       var drag = layer.dragging;
       var opts = layer.options;
 
-      if (m !== 'lock') { layer.setOpacity(0); }
+      if (m !== 'lock') {
+        layer.setOpacity(0);
+        L.DomUtil.removeClass(layer._icon, 'leaflet-interactive');
+      }
       if (drag) { drag.disable(); }
       if (opts.draggable) { opts.draggable = false; }
     });
